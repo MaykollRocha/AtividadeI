@@ -2,6 +2,9 @@ import streamlit as st
 import yfinance as yf
 
 
+def jurus():
+
+
 def cotacao_atual():
     moedas = {
             "Dólar Americano":"USD",
@@ -21,9 +24,6 @@ def cotacao_atual():
     cotacao = round(yf.Ticker(f'{moedas[moeda1]}{moedas[moeda2]}=X').info['bid'],2)
     st.text(f"De {moeda1} para {moeda2} será de {cotacao} {moedas[moeda2]}")
     st.text(f"Assim sendo {valor}{moedas[moeda1]} é igual a {round(valor*cotacao,2)} {moedas[moeda2]} ")
-
-
-
 
 def calcIMC():
     IMC = lambda peso,altura : peso/(altura*altura)
@@ -58,3 +58,6 @@ with st.expander("IMC calculadora"):
 
 with st.expander("Cotações"):
     cotacao_atual()
+
+with st.expander("Ju"):
+    jurus()
