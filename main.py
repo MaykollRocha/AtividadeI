@@ -46,7 +46,7 @@ CGm = Custo Global Anual por m²
 
     TRSC = lambda A,Ff,Fu,Fs,CGm: (A * (1 + Ff + Fu + Fs))*CGm
     if A and Ff and Fu and Fs and CGm:
-        st.text(f"O valor da taxa de lixo é de : {TRSC(A,Ff,Fu,Fs,CGm)}")
+        st.text(f"O valor da taxa de lixo é de : {round(TRSC(A,Ff,Fu,Fs,CGm),2)}")
     else:
         st.text("Ainda não foi informada nenhuma das variaveis.")
 
