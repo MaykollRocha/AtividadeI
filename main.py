@@ -4,7 +4,7 @@ import yfinance as yf
 
 def jurus():
     st.title("Jurus simples ")
-    st.latex(r":J = P \cdot i \cdot t")
+    st.latex(r"J = P \cdot i \cdot t")
 
 def cotacao_atual():
     moedas = {
