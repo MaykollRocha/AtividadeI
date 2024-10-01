@@ -1,6 +1,12 @@
 import streamlit as st
 import yfinance as yf
+import numpy as np
 
+def AnaliseDeEntrada():
+    st.title("Anlise de sequencia Numérica")
+    stringNumeros = st.text_input('Entre com uma sequencia de Numeros separados por virgula: ',placeholder="1,2,3,4,1,80,-5") 
+    numeros = np.array(stringNumeros)
+    st.text(numeros)
 def TCRS_Calculo():
     st.title("Taxa de Lixo")
     st.latex(r"Fp = A \times (1 + Ff + Fu + Fs) x GGm")
@@ -12,7 +18,7 @@ da coleta
 Fu = Fator de Uso preponderante aplicável sobre a área, de acordo com os
 registros municipais  
 Fs = Fator Socioeconômico aplicável sobre a área, de acordo com o padrão
-CGm = Custo Global Anual por m²      
+CGm = Custo Global Anual por m² em dourados é de R$ 1,15 que é o valor referente a ser usado.    
         ''')
     A = st.number_input("Entre com a  área do imóvel: ",min_value=0.00)
     Ff = st.number_input("Frequência da coleta: ",min_value=1,max_value=6)
@@ -137,3 +143,6 @@ with st.expander("Jurus Simples e Composto"):
 
 with st.expander("Calculo da taxa do lixo"):
     TCRS_Calculo()
+
+with st.expander("Analise de entrada numérica"):
+    AnaliseDeEntrada()
