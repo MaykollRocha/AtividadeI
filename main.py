@@ -15,7 +15,7 @@ def cotacao_atual():
     }
 
     st.title("Cotações")
-    st.text(moedas)
+    st.selectbox('Valor da Moda', [k for k in moedas])
 
 
 
