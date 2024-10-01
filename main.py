@@ -12,8 +12,10 @@ def coracao_plot():
     x = 16*np.sin(t)**3
     y = 13*np.cos(t) - 5*np.cos(2*t) - 2*np.cos(3*t) - np.cos(4*t)
 
-    plt.plot(x,y)
+    plt.plot(x,y,color='black')
+    plt.fill(x,y,color='r')
     
+    plt.title("Coração")
     plt.axis("equal")
     st.pyplot(plt)
 
