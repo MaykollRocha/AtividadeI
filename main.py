@@ -19,8 +19,8 @@ def jurus():
     st.title("Jurus Cosposto ")
     st.latex(r" J = P \cdot \left( (1 + i)^t - 1 \right)")
     st.text("J: Jurus\nP: Capital \n i: Taxa \n t: tempo meses")
-    cp = st.number_input("Entre com a Capital: ",min_value=0.00)
-    ci = st.number_input("Entre com a Taxa: ",min_value=0.00)
+    cp = st.number_input("Entre com Capital: ",min_value=0.00)
+    ci = st.number_input("Entre com Taxa: ",min_value=0.00)
     ct = st.number_input("Entre com a Tempo meses: ",min_value=0)
     cJ = lambda Capital,imposto,tempo: Capital*((1+imposto)**tempo - 1)
     if cp and ci and ct:
