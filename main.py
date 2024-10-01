@@ -1,4 +1,25 @@
 import streamlit as st
+import yfinance as yf
+
+
+def cotacao_atual():
+    moedas = {
+            "Dólar Americano":"USD",
+            "Euro":"EUR", 
+            "Libra Esterlina":"GBP",
+            "Iene Japonês":"JPY",
+            "Dólar Australiano":"AUD",
+            "Dólar Canadense":"CAD", 
+            "Franco Suíço":"CHF", 
+            "Real Brasileiro":"BRL",
+    }
+
+    st.title("Cotações")
+    st.text(moedas)
+
+
+
+
 
 def calcIMC():
     IMC = lambda peso,altura : peso/(altura*altura)
@@ -27,5 +48,9 @@ def calcIMC():
 
 
 st.title("Atividade I - Streamlit")
+
 with st.expander("IMC calculadora"):
     calcIMC()
+
+with st.expander("Cotações"):
+    cotacao_atual()
