@@ -6,7 +6,7 @@ def AnaliseDeEntrada():
     st.title("Anlise de sequencia Numérica")
     stringNumeros = st.text_input('Entre com uma sequencia de Numeros: ',placeholder="1 2 34 2 5 1 2") 
     if stringNumeros:
-        numeros = np.array(list(stringNumeros))
+        numeros = np.array(list(stringNumeros).split(" "))
         st.text(numeros[1])
 def TCRS_Calculo():
     st.title("Taxa de Lixo")
