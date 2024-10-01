@@ -1,6 +1,19 @@
 import streamlit as st
 import yfinance as yf
 
+def TCRS():
+    st.title("Taxa de Lixo")
+    st.latex(r"Fp = A \times (1 + Ff + Fu + Fs) x GGm")
+    st.markdown('''
+        Onde:  
+A = Área do imóvel edificado ou, não o sendo, do terreno  
+Ff = Fator de Frequência aplicável sobre a área, de acordo com a frequência
+da coleta  
+Fu = Fator de Uso preponderante aplicável sobre a área, de acordo com os
+registros municipais  
+Fs = Fator Socioeconômico aplicável sobre a área, de acordo com o padrão
+CGm = Custo Global Anual por m²      
+        ''')
 
 def jurus():
     st.title("Jurus simples ")
@@ -85,3 +98,6 @@ with st.expander("Cotações"):
 
 with st.expander("Jurus Simples e Composto"):
     jurus()
+
+with st.expander("Calculo da taxa do lixo"):
+    TCRS()
