@@ -24,7 +24,7 @@ def jurus():
     ct = st.number_input("Entre Tempo meses: ",min_value=0)
     cJ = lambda Capital,imposto,tempo: Capital*((1+imposto)**tempo - 1)
     if cp and ci and ct:
-        st.text(f"O jurus vai ficar de {cJ(cp,ci,ct)} em {ct} meses.")
+        st.text(f"O jurus vai ficar de {round(cJ(cp,ci,ct))} em {ct} meses. Montante {cp + round(cJ(cp,ci,ct)) }")
     else:
         st.text("Falta de Imformação.")
 
