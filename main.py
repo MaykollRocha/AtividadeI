@@ -1,7 +1,7 @@
 import streamlit as st
 import yfinance as yf
 
-def TCRS():
+def TCRS_Calculo():
     st.title("Taxa de Lixo")
     st.latex(r"Fp = A \times (1 + Ff + Fu + Fs) x GGm")
     st.markdown('''
@@ -14,6 +14,42 @@ registros municipais
 Fs = Fator Socioeconômico aplicável sobre a área, de acordo com o padrão
 CGm = Custo Global Anual por m²      
         ''')
+    A = st.number_input("Entre com a  área do imóvel: ",min_value=0.00)
+    Ff = st.number_input("Frequência da coleta: ",min_value=1,max_value=6)
+    match Ff:
+        case 1: Fs = 0.010989
+        case 2: Fs = 0.043956
+        case 3: Fs = 0.098901
+        case 4: Fs = 0.175824
+        case 5: Fs = 0.274725
+        case 6: Fs = 0.395605
+
+    Fu = st.selectbox('Select', ["Residencial","Misto","Serviço","Comercial I","Industrial I","Público","Outros"])
+    match Fu:
+        case "Residencial": Fu = 0.010989
+        case "Misto": Fu = 0.098901
+        case "Serviço": Fu = 0.175824
+        case "Comercial I": Fu = 0.274725
+        case "Industrial I": Fu = 0.395605
+        case "Público": Fu = 0.010989
+        case "Outros": Fu = 0.043956
+
+    Fs = st.selectbox("Fator Socioeconômico aplicável ",["Precária","Popular","Médio","Fino","Luxo"])
+    match Fs:
+        case "Precária": Fs = 0.008264
+        case "Popular": Fs = 0.033056
+        case "Médio": Fs = 0.132224
+        case "Fino": Fs = 0.297504
+        case "Luxo": Fs = 0.528952
+    
+    CGm = 1.15
+
+    TRSC = lambda A,Ff,Fu,Fs,CGm: (A * (1 + Ff + Fu + Fs))*CGm
+    if A and Ff and Fu and Fs and CGm:
+        st.text(TRSC(A,Ff,Fu,Fs,CGm))
+    else:
+        st.text("Ainda não foi informada nenhuma das variaveis.")
+
 
 def jurus():
     st.title("Jurus simples ")
@@ -100,4 +136,4 @@ with st.expander("Jurus Simples e Composto"):
     jurus()
 
 with st.expander("Calculo da taxa do lixo"):
-    TCRS()
+    TCRS_Calculo()
