@@ -15,8 +15,8 @@ def cotacao_atual():
     }
 
     st.title("Cotações")
-    moeda1 = st.selectbox('Valor da Moda', [k for k in moedas],index=0)
-    moeda2 = st.selectbox('Valor da Moda', [k for k in moedas],inde)
+    moeda1 = st.selectbox('Valor da Moeda1', [k for k in moedas],0)
+    moeda2 = st.selectbox('Valor da Moeda2', [k for k in moedas],1)
 
 
 
