@@ -9,7 +9,7 @@ def AnaliseDeEntrada():
         numeros = np.array(stringNumeros.split(" "))
         st.markdown(f"""
                     A sequencia de números : {numeros}  
-                    Apresenta a média: {numeros.mean}
+                    Apresenta a média: {numeros.mean()}
                     
                     """)
 def TCRS_Calculo():
