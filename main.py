@@ -27,5 +27,5 @@ def calcIMC():
 
 
 st.title("Atividade I - Streamlit")
-
-calcIMC()
+with st.expander():
+    calcIMC()
