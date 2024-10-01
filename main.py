@@ -8,9 +8,9 @@ def coracao_plot():
     st.latex(r"x(t) = 16 \sin^3(t)")
     st.latex(r"y(t) = 13 \cos(t) - 5 \cos(2t) - 2 \cos(3t) - \cos(4t)")
     
-    intervalo = [0,np.pi]
-    x = lambda t: 16*np.sin(t)**3
-    y = lambda t: 13*np.cos(t) - 5*np.cos(2*t) - 2*np.cos(3*t) - np.cos(4*t)
+    t = np.linspace(0, 2 * np.pi, 1000)
+    x = 16*np.sin(t)**3
+    y = 13*np.cos(t) - 5*np.cos(2*t) - 2*np.cos(3*t) - np.cos(4*t)
 
     plt.plot(x,y)
     
