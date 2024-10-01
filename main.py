@@ -10,7 +10,7 @@ def AnaliseDeEntrada():
         st.markdown(f"""
                     A sequencia de números : {numeros}  
                     {type(numeros)}
-                    Apresenta a Soma: {numeros.sum()}
+                    Apresenta a Soma: 
                     
                     """)
 def TCRS_Calculo():
