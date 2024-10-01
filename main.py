@@ -5,8 +5,15 @@ import yfinance as yf
 def jurus():
     st.title("Jurus simples ")
     st.latex(r"J = P \cdot i \cdot t")
-    st.text("J: Jurus\nP: Capital \n i: Taxa \n t: tempo")
-
+    st.text("J: Jurus\nP: Capital \n i: Taxa \n t: tempo meses")
+    p = st.number_input("Entre com a Capital: ",min_value=0.00)
+    i = st.number_input("Entre com a Taxa: ",min_value=0.00)
+    t = st.number_input("Entre com a Tempo meses: ",min_value=0.00)
+    J = lambda Capital,imposto,tempo: Capital*imposto*tempo
+    if p and i and j:
+        st.text(f"O jurus vai ficar de {J(p,i,t)} em {t} meses.")
+    else:
+        st.text("Falta de Imformação.")
 def cotacao_atual():
     moedas = {
             "Dólar Americano":"USD",
