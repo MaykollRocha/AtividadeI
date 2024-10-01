@@ -23,7 +23,7 @@ def jurus():
     ci = st.number_input("Entre com a Taxa: ",min_value=0.00)
     ct = st.number_input("Entre com a Tempo meses: ",min_value=0)
     cJ = lambda Capital,imposto,tempo: Capital*((1+imposto)**tempo - 1)
-    if p and i and t:
+    if cp and ci and ct:
         st.text(f"O jurus vai ficar de {cJ(cp,ci,ct)} em {ct} meses.")
     else:
         st.text("Falta de Imformação.")
