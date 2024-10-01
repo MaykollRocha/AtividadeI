@@ -9,9 +9,13 @@ def AnaliseDeEntrada():
         numeros = np.array(stringNumeros.split(" "),dtype=int)
         st.markdown(f"""
                     A sequencia de números : {numeros}  
-                    {type(numeros)}
-                    Apresenta a Soma: {numeros.sum()}
-                    
+                    Soma: {numeros.sum()}  
+                    Media: {numeros.mean()}  
+                    Mediana: {numeros.median()}  
+                    Desvio padrão: {np.std(numeros)}  
+                    Valor Max: {numeros.max()}  
+                    Valor Min: {numeros.min()} 
+                
                     """)
 def TCRS_Calculo():
     st.title("Taxa de Lixo")
