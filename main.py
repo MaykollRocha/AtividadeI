@@ -8,8 +8,8 @@ def AnaliseDeEntrada():
     if stringNumeros:
         numeros = np.array(stringNumeros.split(" "))
         st.markdown(f"""
-                    A sequencia de números : {numeros[0]}  
-                    Apresenta a média: 
+                    A sequencia de números : {numeros}  
+                    Apresenta a Soma: {numeros.sum()}
                     
                     """)
 def TCRS_Calculo():
