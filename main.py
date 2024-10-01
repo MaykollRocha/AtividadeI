@@ -16,7 +16,7 @@ def jurus():
     else:
         st.text("Falta de Imformação.")
     
-    st.title("Jurus Cosposto ")
+    st.title("Jurus Composto ")
     st.latex(r" J = P \cdot \left( (1 + i)^t - 1 \right)")
     st.text("J: Jurus\nP: Capital \n i: Taxa \n t: tempo meses")
     cp = st.number_input("Entre com Capital: ",min_value=0.00)
