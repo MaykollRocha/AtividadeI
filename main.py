@@ -9,6 +9,7 @@ def AnaliseDeEntrada():
         numeros = np.array(stringNumeros.split(" "),type=int)
         st.markdown(f"""
                     A sequencia de números : {numeros}  
+                    {type(numeros)}
                     Apresenta a Soma: {numeros.sum()}
                     
                     """)
