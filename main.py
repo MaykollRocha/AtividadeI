@@ -7,7 +7,7 @@ def AnaliseDeEntrada():
     stringNumeros = st.text_input('Entre com uma sequencia de Numeros: ',placeholder="1 2 34 2 5 1 2") 
     if stringNumeros:
         numeros = np.array(list(stringNumeros).split(" "))
-        st.text(numeros[1])
+        st.text(numeros)
 def TCRS_Calculo():
     st.title("Taxa de Lixo")
     st.latex(r"Fp = A \times (1 + Ff + Fu + Fs) x GGm")
