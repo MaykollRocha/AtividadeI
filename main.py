@@ -14,6 +14,7 @@ def coracao_plot():
 
     plt.plot(x,y)
     
+    plt.axis("equal")
     st.pyplot(plt)
 
 def AnaliseDeEntrada():
