@@ -6,7 +6,7 @@ def AnaliseDeEntrada():
     st.title("Anlise de sequencia Numérica")
     stringNumeros = st.text_input('Entre com uma sequencia de Numeros sepadas por espaço: ',placeholder="1 2 34 2 5 1 2") 
     if stringNumeros:
-        numeros = stringNumeros.split(" ")
+        numeros = np.array(stringNumeros.split(" "),type=int)
         st.markdown(f"""
                     A sequencia de números : {numeros}  
                     Apresenta a Soma: {numeros.sum()}
