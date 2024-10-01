@@ -8,7 +8,7 @@ def coracao_plot():
     st.latex(r"x(t) = 16 \sin^3(t)")
     st.latex(r"y(t) = 13 \cos(t) - 5 \cos(2t) - 2 \cos(3t) - \cos(4t)")
     intervalo = [0,np.pi]
-    
+
 
 def AnaliseDeEntrada():
     st.title("Anlise de sequencia Numérica")
@@ -164,3 +164,5 @@ with st.expander("Calculo da taxa do lixo"):
 with st.expander("Analise de entrada numérica"):
     AnaliseDeEntrada()
 
+with st.expander("Coração"):
+    coracao_plot()
