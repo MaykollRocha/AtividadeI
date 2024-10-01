@@ -12,19 +12,19 @@ def jurus():
     J = lambda Capital,imposto,tempo: Capital*imposto*tempo
     M = lambda Capital,imposto,tempo: Capital*(1 + imposto*tempo)
     if p and i and t:
-        st.text(f"O jurus vai ficar de {J(p,i,t)} em {t} meses.Com montante de {M(p,i,t)}")
+        st.text(f"O jurus vai ficar de {J(p,i,t)} em {t} meses.Com montante de {round(M(p,i,t),2)}")
     else:
         st.text("Falta de Imformação.")
     
     st.title("Jurus Cosposto ")
-    st.latex(r"Latex: P \cdot (1 + i)^t")
+    st.latex(r" J = P \cdot \left( (1 + i)^t - 1 \right)")
     st.text("J: Jurus\nP: Capital \n i: Taxa \n t: tempo meses")
     cp = st.number_input("Entre com a Capital: ",min_value=0.00)
     ci = st.number_input("Entre com a Taxa: ",min_value=0.00)
     ct = st.number_input("Entre com a Tempo meses: ",min_value=0)
-    cJ = lambda Capital,imposto,tempo: Capital*imposto*tempo
+    cJ = lambda Capital,imposto,tempo: Capital*((1+imposto)**tempo - 1)
     if p and i and t:
-        st.text(f"O jurus vai ficar de {J(p,i,t)} em {t} meses.")
+        st.text(f"O jurus vai ficar de {cJ(cp,ci,ct)} em {ct} meses.")
     else:
         st.text("Falta de Imformação.")
 def cotacao_atual():
