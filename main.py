@@ -3,7 +3,8 @@ import yfinance as yf
 
 
 def jurus():
-
+    st.title("Jurus simples ")
+    
 
 def cotacao_atual():
     moedas = {
@@ -59,5 +60,5 @@ with st.expander("IMC calculadora"):
 with st.expander("Cotações"):
     cotacao_atual()
 
-with st.expander("Ju"):
+with st.expander("Jurus Simples e Composto"):
     jurus()
