@@ -11,7 +11,6 @@ def AnaliseDeEntrada():
                     A sequencia de números : {numeros}  
                     Soma: {numeros.sum()}  
                     Media: {numeros.mean()}  
-                    Mediana: {numeros.median()}  
                     Desvio padrão: {np.std(numeros)}  
                     Valor Max: {numeros.max()}  
                     Valor Min: {numeros.min()} 
