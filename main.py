@@ -17,8 +17,8 @@ def cotacao_atual():
     st.title("Cotações")
     moeda1 = st.selectbox('Valor da Moeda1', [k for k in moedas],0)
     moeda2 = st.selectbox('Valor da Moeda2', [k for k in moedas],1)
-    cotacao = yf.Ticker(f'{moeda1}{moeda2}=X').info['bid']
-
+    cotacao = yf.Ticker(f'{moedas[moeda1]}{moedas[moeda2]}=X').info['bid']
+    st.text(f"De {moeda1} para {moeda2} será de {cotacao} {moedas[moeda2]}")
 
 
 
