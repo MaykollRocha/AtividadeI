@@ -20,7 +20,7 @@ def cotacao_atual():
     valor = st.number_input("Valor de Comparação",min_value=0.00,step=1.00)
     cotacao = round(yf.Ticker(f'{moedas[moeda1]}{moedas[moeda2]}=X').info['bid'],2)
     st.text(f"De {moeda1} para {moeda2} será de {cotacao} {moedas[moeda2]}")
-    st.text(f"Assim sendo {valor}{moedas[moeda1]} é igual a {round(valor*cotacao)} {moedas[moeda2]} ")
+    st.text(f"Assim sendo {valor}{moedas[moeda1]} é igual a {round(valor*cotacao,2)} {moedas[moeda2]} ")
 
 
 
