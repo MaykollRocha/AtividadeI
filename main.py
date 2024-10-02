@@ -15,7 +15,6 @@ def coracao_plot():
     plt.plot(x,y,color='black')
     plt.fill(x,y,color='r')
     
-    plt.title("Coração")
     plt.axis("equal")
     st.pyplot(plt)
 
@@ -23,16 +22,12 @@ def AnaliseDeEntrada():
     st.title("Anlise de sequencia Numérica")
     stringNumeros = st.text_input('Entre com uma sequencia de Numeros sepadas por espaço: ',placeholder="1 2 34 2 5 1 2") 
     if stringNumeros:
-        numeros = np.array(stringNumeros.split(" "),dtype=float)
+        numeros = [int(i) for i in stringNumeros.split(" ")]
         st.markdown(f"""
                     A sequencia de números : {numeros}  
-                    Soma: {numeros.sum()}  
-                    Media: {numeros.mean()}  
-                    Desvio padrão: {np.std(numeros)}  
-                    Valor Max: {numeros.max()}  
-                    Valor Min: {numeros.min()} 
-
+                    
                     """)
+
 def TCRS_Calculo():
     st.title("Taxa de Lixo")
     st.latex(r"Fp = A \times (1 + Ff + Fu + Fs) x GGm")
