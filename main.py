@@ -2,6 +2,7 @@ import streamlit as st
 import yfinance as yf
 import numpy as np
 import matplotlib.pyplot as plt
+import scipy.stats as stats
 
 def coracao_plot():
     st.title("Coração plot")
@@ -22,12 +23,26 @@ def AnaliseDeEntrada():
     st.title("Anlise de sequencia Numérica")
     stringNumeros = st.text_input('Entre com uma sequencia de Numeros sepadas por espaço: ',placeholder="1 2 34 2 5 1 2") 
     if stringNumeros:
-        numeros = [int(i) for i in stringNumeros.split(" ")]
+        numeros = np.array(stringNumeros.split(" "),dtype=float)
         st.markdown(f"""
                     A sequencia de números : {numeros}  
-                    
-                    """)
+                    Soma: {numeros.sum()}  
+                    Media: {numeros.mean()}  
+                    median: {np.median(numeros)}
+                    moda: {stats.mode(numeros).mode[0]}
+                    Desvio padrão: {np.std(numeros)}  
+                    Valor Max: {numeros.max()}  
+                    Valor Min: {numeros.min()} 
 
+                    """)
+        # Exibindo as fórmulas em LaTeX
+        st.write("## Fórmulas")
+        st.latex(r"\text{Média: } \bar{x} = \frac{1}{n} \sum_{i=1}^{n} x_i")
+        st.latex(r"\text{Mediana: } \text{Mediana} = \text{valor central se ímpar, média dos dois valores centrais se par}")
+        st.latex(r"\text{Moda: } \text{Moda é o valor que mais se repete}")
+        st.latex(r"\text{Desvio Padrão: } \sigma = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x})^2}")
+        st.latex(r"\text{Máximo: } \max(x)")
+        st.latex(r"\text{Mínimo: } \min(x)")
 def TCRS_Calculo():
     st.title("Taxa de Lixo")
     st.latex(r"Fp = A \times (1 + Ff + Fu + Fs) x GGm")
