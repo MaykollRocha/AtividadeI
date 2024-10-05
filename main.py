@@ -6,14 +6,15 @@ import scipy.stats as stats
 
 
 def DespesasMensais():
-    # Título do app
+ # Título do app
     st.title("Calculadora de Despesas Mensais")
 
     # Inserir orçamento total
     orçamento = st.number_input("Insira o seu orçamento mensal:", min_value=0.0, format="%.2f")
 
-    # Inicializando dicionário para armazenar as despesas
-    despesas = {}
+    # Inicializando o dicionário de despesas na sessão do usuário (preservado durante a interação)
+    if 'despesas' not in st.session_state:
+        st.session_state['despesas'] = {}
 
     # Formulário para adicionar despesas
     st.header("Adicionar nova despesa")
@@ -26,12 +27,12 @@ def DespesasMensais():
         submit_button = st.form_submit_button(label='Adicionar Despesa')
         
         if submit_button and nome:
-            despesas[nome] = {'descrição': descricao, 'valor': valor}
+            st.session_state['despesas'][nome] = {'descrição': descricao, 'valor': valor}
             st.success(f"Despesa '{nome}' adicionada com sucesso!")
 
     # Exibir despesas adicionadas
+    despesas = st.session_state['despesas']
     if despesas:
-        st.write(despesas)
         st.subheader("Despesas Adicionadas")
         total_despesas = 0.0
         labels = []
