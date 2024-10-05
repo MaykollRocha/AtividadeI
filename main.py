@@ -4,6 +4,62 @@ import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
 
+
+def DespesasMensais():
+    # Título do app
+    st.title("Calculadora de Despesas Mensais")
+
+    # Inserir orçamento total
+    orçamento = st.number_input("Insira o seu orçamento mensal:", min_value=0.0, format="%.2f")
+
+    # Inicializando dicionário para armazenar as despesas
+    despesas = {}
+
+    # Formulário para adicionar despesas
+    st.header("Adicionar nova despesa")
+    with st.form(key='form_despesa'):
+        nome = st.text_input("Nome da despesa:")
+        descricao = st.text_input("Descrição da despesa:")
+        valor = st.number_input("Valor da despesa:", min_value=0.0, format="%.2f")
+        
+        # Botão para adicionar a despesa
+        submit_button = st.form_submit_button(label='Adicionar Despesa')
+        
+        if submit_button and nome:
+            despesas[nome] = {'descrição': descricao, 'valor': valor}
+            st.success(f"Despesa '{nome}' adicionada com sucesso!")
+
+    # Exibir despesas adicionadas
+    if despesas:
+        st.subheader("Despesas Adicionadas")
+        total_despesas = 0.0
+        labels = []
+        valores = []
+        
+        # Exibir as despesas e calcular o total
+        for nome, info in despesas.items():
+            st.write(f"**{nome}**: {info['descrição']} - R${info['valor']:.2f}")
+            total_despesas += info['valor']
+            labels.append(nome)
+            valores.append(info['valor'])
+        
+        # Cálculo do valor que sobra
+        sobra = orçamento - total_despesas
+        st.write(f"**Total de despesas:** R${total_despesas:.2f}")
+        st.write(f"**Sobra do orçamento:** R${sobra:.2f}")
+        
+        # Gráfico de pizza
+        if total_despesas > 0:
+            fig, ax = plt.subplots()
+            ax.pie(valores, labels=labels, autopct='%1.1f%%', startangle=90)
+            ax.axis('equal')  # Para deixar o gráfico em formato circular
+            st.pyplot(fig)
+    else:
+        st.write("Nenhuma despesa adicionada ainda.")
+
+    
+
+
 def SMG_main(): 
     # Função para calcular a parcela mensal e o total a ser pago
     def calcular_parcela(valor_emprestimo, taxa_juros, numero_parcelas):
@@ -247,6 +303,9 @@ with st.expander("Analise de entrada numérica"):
 
 with st.expander("Coração"):
     coracao_plot()
+
+with st.expander("Despesas Mensais"):
+    DespesasMensais()
 
 with st.expander("Custos"):
     SMG_main()
