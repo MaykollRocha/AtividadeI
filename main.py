@@ -3,7 +3,68 @@ import yfinance as yf
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
-from Exec import main as SMG_main
+
+def SMG_main(): 
+    # Função para calcular a parcela mensal e o total a ser pago
+    def calcular_parcela(valor_emprestimo, taxa_juros, numero_parcelas):
+        # Converter a taxa de juros anual para mensal (percentual)
+        juros_mensal = taxa_juros / 100 / 12
+        # Fórmula do cálculo da parcela mensal (Sistema de Amortização Francês)
+        parcela = valor_emprestimo * (juros_mensal * (1 + juros_mensal)**numero_parcelas) / ((1 + juros_mensal)**numero_parcelas - 1)
+        total_pago = parcela * numero_parcelas
+        return parcela, total_pago
+
+    # Função para gerar a amortização
+    def gerar_amortizacao(valor_emprestimo, taxa_juros, numero_parcelas):
+        juros_mensal = taxa_juros / 100 / 12
+        saldo_devedor = valor_emprestimo
+        parcelas = []
+        amortizacoes = []
+        juros = []
+        
+        for i in range(numero_parcelas):
+            valor_juros = saldo_devedor * juros_mensal
+            valor_amortizacao = calcular_parcela(valor_emprestimo, taxa_juros, numero_parcelas)[0] - valor_juros
+            saldo_devedor -= valor_amortizacao
+            
+            parcelas.append(calcular_parcela(valor_emprestimo, taxa_juros, numero_parcelas)[0])
+            amortizacoes.append(valor_amortizacao)
+            juros.append(valor_juros)
+        
+        return parcelas, amortizacoes, juros
+
+
+    # Interface do Streamlit
+    st.title("Simulador de Empréstimos")
+
+    # Entrada de dados do usuário
+    valor_emprestimo = st.number_input("Valor do Empréstimo (R$)", min_value=1000.0, value=10000.0, step=1000.0)
+    taxa_juros = st.number_input("Taxa de Juros Anual (%)", min_value=0.1, value=5.0, step=0.1)
+    numero_parcelas = st.number_input("Número de Parcelas (meses)", min_value=1, value=12, step=1)
+
+    # Cálculo das parcelas
+    parcela, total_pago = calcular_parcela(valor_emprestimo, taxa_juros, numero_parcelas)
+
+    # Exibir os resultados
+    st.write(f"### Valor da parcela mensal: R$ {parcela:.2f}")
+    st.write(f"### Total a ser pago: R$ {total_pago:.2f}")
+
+    # Gerar dados para o gráfico de amortização
+    parcelas, amortizacoes, juros = gerar_amortizacao(valor_emprestimo, taxa_juros, numero_parcelas)
+
+    # Gráfico de amortização
+    st.write("## Gráfico de Amortização")
+    fig, ax = plt.subplots()
+
+    ax.plot(range(1, numero_parcelas + 1), amortizacoes, label="Amortização", marker='o')
+    ax.plot(range(1, numero_parcelas + 1), juros, label="Juros", marker='x')
+    ax.set_xlabel("Número da Parcela")
+    ax.set_ylabel("Valor (R$)")
+    ax.set_title("Amortização e Juros ao Longo do Tempo")
+    ax.legend()
+
+    st.pyplot(fig)
+
 
 def coracao_plot():
     st.title("Coração plot")
@@ -186,3 +247,6 @@ with st.expander("Analise de entrada numérica"):
 
 with st.expander("Coração"):
     coracao_plot()
+
+with st.expander("Custos"):
+    SMG_main()
