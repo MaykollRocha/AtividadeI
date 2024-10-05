@@ -5,6 +5,90 @@ import matplotlib.pyplot as plt
 import scipy.stats as stats
 
 
+def JogoDaVelha():
+    # Função para inicializar o tabuleiro
+    def inicializar_tabuleiro():
+        return np.full((3, 3), '')
+
+    # Função para verificar se há um vencedor
+    def verificar_vencedor(tabuleiro):
+        # Verificar linhas
+        for linha in tabuleiro:
+            if linha[0] == linha[1] == linha[2] != '':
+                return linha[0]
+
+        # Verificar colunas
+        for col in range(3):
+            if tabuleiro[0][col] == tabuleiro[1][col] == tabuleiro[2][col] != '':
+                return tabuleiro[0][col]
+
+        # Verificar diagonais
+        if tabuleiro[0][0] == tabuleiro[1][1] == tabuleiro[2][2] != '':
+            return tabuleiro[0][0]
+        if tabuleiro[0][2] == tabuleiro[1][1] == tabuleiro[2][0] != '':
+            return tabuleiro[0][2]
+
+        return None
+
+    # Função para verificar se há empate
+    def verificar_empate(tabuleiro):
+        return '' not in tabuleiro
+
+    # Função para renderizar o tabuleiro e capturar a jogada
+    def exibir_tabuleiro(tabuleiro, jogador_atual):
+        col1, col2, col3 = st.columns(3)
+        for i in range(3):
+            with [col1, col2, col3][i]:
+                for j in range(3):
+                    if st.button(f'{tabuleiro[i][j] or " "}', key=f'{i}-{j}'):
+                        if tabuleiro[i][j] == '':
+                            tabuleiro[i][j] = jogador_atual
+                            return True
+        return False
+
+    # Função para trocar o jogador
+    def trocar_jogador(jogador_atual):
+        return 'O' if jogador_atual == 'X' else 'X'
+
+    # Inicializando o estado da sessão
+    if 'tabuleiro' not in st.session_state:
+        st.session_state['tabuleiro'] = inicializar_tabuleiro()
+        st.session_state['jogador_atual'] = 'X'
+        st.session_state['vencedor'] = None
+
+    # Cabeçalho do jogo
+    st.title("Jogo da Velha")
+
+    # Exibir o tabuleiro e capturar a jogada
+    if st.session_state['vencedor'] is None:
+        jogada_feita = exibir_tabuleiro(st.session_state['tabuleiro'], st.session_state['jogador_atual'])
+
+        # Verificar se houve uma jogada
+        if jogada_feita:
+            # Verificar se há um vencedor
+            st.session_state['vencedor'] = verificar_vencedor(st.session_state['tabuleiro'])
+
+            # Verificar se houve empate
+            if st.session_state['vencedor'] is None and verificar_empate(st.session_state['tabuleiro']):
+                st.session_state['vencedor'] = 'Empate'
+
+            # Trocar de jogador
+            if st.session_state['vencedor'] is None:
+                st.session_state['jogador_atual'] = trocar_jogador(st.session_state['jogador_atual'])
+
+    # Exibir o resultado final
+    if st.session_state['vencedor'] is not None:
+        if st.session_state['vencedor'] == 'Empate':
+            st.subheader("O jogo terminou em empate!")
+        else:
+            st.subheader(f"O jogador {st.session_state['vencedor']} venceu!")
+
+        # Botão para reiniciar o jogo
+        if st.button("Reiniciar Jogo"):
+            st.session_state['tabuleiro'] = inicializar_tabuleiro()
+            st.session_state['jogador_atual'] = 'X'
+            st.session_state['vencedor'] = None
+
 def DespesasMensais():
  # Título do app
     st.title("Calculadora de Despesas Mensais")
@@ -311,3 +395,6 @@ with st.expander("Despesas Mensais"):
 
 with st.expander("Custos"):
     SMG_main()
+
+with st.expander("Jogo da Velha"):
+    JogoDaVelha()
