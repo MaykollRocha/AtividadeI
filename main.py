@@ -31,6 +31,7 @@ def DespesasMensais():
 
     # Exibir despesas adicionadas
     if despesas:
+        st.write(despesas)
         st.subheader("Despesas Adicionadas")
         total_despesas = 0.0
         labels = []
