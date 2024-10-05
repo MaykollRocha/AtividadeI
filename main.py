@@ -58,7 +58,7 @@ def JogoDaVelha():
 
     # Cabeçalho do jogo
     st.title("Jogo da Velha")
-
+    st.text("Não funciona muito bem mas da pro gasto(Culpa dos constante recarregamento), e é JxJ")
     # Exibir o tabuleiro e capturar a jogada
     if st.session_state['vencedor'] is None:
         jogada_feita = exibir_tabuleiro(st.session_state['tabuleiro'], st.session_state['jogador_atual'])
@@ -92,7 +92,7 @@ def JogoDaVelha():
 def DespesasMensais():
  # Título do app
     st.title("Calculadora de Despesas Mensais")
-    st.text("Não funciona muito bem mas da pro gasto(Culpa dos constante recarregamento), e é JxJ")
+
     # Inserir orçamento total
     orçamento = st.number_input("Insira o seu orçamento mensal:", min_value=0.0, format="%.2f")
 
