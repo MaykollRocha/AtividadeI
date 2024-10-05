@@ -3,7 +3,7 @@ import yfinance as yf
 import numpy as np
 import matplotlib.pyplot as plt
 import scipy.stats as stats
-from Exec.SMG 
+from Exec.SMG import main as SMG_main
 
 def coracao_plot():
     st.title("Coração plot")
