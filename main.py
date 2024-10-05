@@ -92,7 +92,7 @@ def JogoDaVelha():
 def DespesasMensais():
  # Título do app
     st.title("Calculadora de Despesas Mensais")
-
+    st.text("Não funciona muito bem mas da pro gasto(Culpa dos constante recarregamento), e é JxJ")
     # Inserir orçamento total
     orçamento = st.number_input("Insira o seu orçamento mensal:", min_value=0.0, format="%.2f")
 
