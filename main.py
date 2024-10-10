@@ -398,3 +398,10 @@ with st.expander("Custos"):
 
 with st.expander("Jogo da Velha"):
     JogoDaVelha()
+
+# Carregar o conteúdo do notebook
+with open('/workspaces/AtividadeI/Projeto_de_Ciência_de_Dados_com_Python_Novatec,_2019_.ipynb', 'r') as f:
+    notebook_content = f.read()
+
+# Exibir o conteúdo no Streamlit
+st.code(notebook_content, language='python')
